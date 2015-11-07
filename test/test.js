@@ -25,6 +25,6 @@ const style = {
 
 const Component = instyled(style)
 
-const output = render(<Component disabled><h1>Hello World</h1><h1>Hello O'World</h1></Component>)
+const output = render(<Component disabled={true}></Component>)
 
 console.log(output)

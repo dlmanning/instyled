@@ -6,7 +6,7 @@ export default styles => {
 
   return activeStates => {
     const index = reduce(activeStates, (accum, value, key) => {
-      if (value != null) {
+      if (value) {
         const indexOfCurrentState = states.indexOf(key)
         accum = indexOfCurrentState !== -1
           ? accum |= 1 << indexOfCurrentState
