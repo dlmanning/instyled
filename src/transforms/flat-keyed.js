@@ -8,7 +8,11 @@ export default styles => {
   )
 
   const stack = reduce(styles, (stack, value, key) => {
-    stack.push([key.split('_'), value])
+    if (key === '$base') {
+      stack.push([value])
+    } else {
+      stack.push([key.split('_'), value])
+    }
     return stack
   }, [])
 
