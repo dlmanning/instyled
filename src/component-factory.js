@@ -1,22 +1,26 @@
-import React, { Component } from 'react'
-import makeStylePicker from './make-style-picker'
+import React from 'react'
+import createGetStyleForProps from './get-style-for-props'
 
-const ComponentFactory = (styles, name, tag = 'div') => {
-  const stylePicker = makeStylePicker(styles)
+const identity = _ => _
 
-  const component = props => {
-    const { children, ...etc } = props
-    const style = stylePicker(etc)
+export const instyledWithTransform = (inputTransform) =>
+  (styleDefinitions, { component = 'div', name = 'instyled' } = {}) => {
+    const getStyleForProps =
+      createGetStyleForProps(inputTransform(styleDefinitions))
 
-    return React.createElement(tag, { style }, children)
+    const Wrapper = props => {
+      const { children, ...etc } = props
+      const style = getStyleForProps(etc)
+
+      return React.createElement(component, { style, ...etc }, children)
+    }
+
+    if (name != null && typeof name === 'string') {
+      name = name[0].toUpperCase() + name.slice(1)
+      Wrapper.displayName = name
+    }
+
+    return Wrapper
   }
 
-  if (name != null && typeof name === 'string') {
-    name = name[0].toUpperCase() + name.slice(1)
-    component.displayName = name
-  }
-
-  return component
-}
-
-export default ComponentFactory
+export const instyled = instyledWithTransform(identity)
