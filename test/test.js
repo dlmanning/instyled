@@ -23,32 +23,33 @@ import { renderToStaticMarkup as render } from 'react-dom/server'
 //   }
 // }
 
-// const style = {
-//   hover: { color: 'orange' },
-//   disabled: { color: 'grey' },
-//   'disabled_active': { color: 'peach'},
-//   'hover_active': { color: 'blue' }
-// }
-
-// console.log(hierarchical(style))
-
-const styleDefinitionFn = d => {
-  d({ display: 'flex', color: 'black' })
-  d(['hover'], { color: 'blue' })
-  d(['active'], { color: 'red'})
-  d(['active', 'disabled'], { color: 'yellow'})
-  d(['disabled'], { color: 'grey'})
+const style = {
+  $base: { display: 'flex', color: 'black'},
+  hover: { color: 'orange' },
+  disabled: { color: 'grey' },
+  'disabled_active': { color: 'peach'},
+  'hover_active': { color: 'blue' }
 }
 
+// console.log(hierarchical(style))
+//
+// const styleDefinitionFn = d => {
+//   d({ display: 'flex', color: 'black' })
+//   d(['hover'], { color: 'blue' })
+//   d(['active'], { color: 'red'})
+//   d(['active', 'disabled'], { color: 'yellow'})
+//   d(['disabled'], { color: 'grey'})
+// }
 
-// const Component = instyledWithTransform(flatKeyed)(style, {
-//   component: 'div'
-// })
 
-const Component = instyled(styleDefinitionFn, { component: 'div'})
+const Component = instyledWithTransform(flatKeyed)(style, {
+  component: 'div'
+})
+
+// const Component = instyled(styleDefinitionFn, { component: 'div'})
 
 const output = render(
-  <Component className="steve" hover>
+  <Component className="steve">
     <h1>Hello World</h1>
   </Component>
 )
