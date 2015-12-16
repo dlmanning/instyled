@@ -24,7 +24,7 @@ import { renderToStaticMarkup as render } from 'react-dom/server'
 // }
 
 const style = {
-  $base: { display: 'flex', color: 'black'},
+  $base: { display: 'flex', color: 'black', width: '90%'},
   hover: { color: 'orange' },
   disabled: { color: 'grey' },
   'disabled_active': { color: 'peach'},
@@ -43,13 +43,14 @@ const style = {
 
 
 const Component = instyledWithTransform(flatKeyed)(style, {
-  component: 'div'
+  component: 'div',
+  staticProps: { name: 'steve' }
 })
 
 // const Component = instyled(styleDefinitionFn, { component: 'div'})
 
 const output = render(
-  <Component className="steve">
+  <Component hover mergeStyle={{width: '100%'}}>
     <h1>Hello World</h1>
   </Component>
 )

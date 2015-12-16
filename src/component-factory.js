@@ -3,16 +3,24 @@ import createGetStyleForProps from './get-style-for-props'
 
 const identity = _ => _
 
-export const instyledWithTransform = (inputTransform) =>
-  (styleDefinitions, { component = 'div', name = 'instyled' } = {}) => {
+export const instyledWithTransform = inputTransform =>
+  (styleDefinitions, { component = 'div', name = 'instyled', staticProps = {} } = {}) => {
     const getStyleForProps =
       createGetStyleForProps(inputTransform(styleDefinitions))
 
     const Wrapper = props => {
-      const { children, ...etc } = props
+      const { children, mergeStyle, ...etc } = props
       const style = getStyleForProps(etc)
 
-      return React.createElement(component, { style, ...etc }, children)
+      if (mergeStyle != null) {
+        Object.assign(style, mergeStyle)
+      }
+
+      return React.createElement(
+        component,
+        { ...staticProps, style, ...etc },
+        children
+      )
     }
 
     if (name != null && typeof name === 'string') {
