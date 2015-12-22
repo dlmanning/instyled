@@ -1,6 +1,6 @@
 import invariant from 'invariant'
 import reduce from 'universal-reduce'
-import { instyled, instyledWithTransform } from './component-factory'
+import { instyled, instyledWithTransform } from './componentFactory'
 import { hierarchical, flatKeyed, defaultsOnly } from './transforms'
 
 export { instyledWithTransform, hierarchical, flatKeyed }

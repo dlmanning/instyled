@@ -1,12 +1,12 @@
 import React from 'react'
-import createGetStyleForProps from './get-style-for-props'
+import makeGetStyleForProps from './makeGetStyleForStates'
 
 const identity = _ => _
 
 export const instyledWithTransform = inputTransform =>
   (styleDefinitions, { component = 'div', name = 'instyled', staticProps = {} } = {}) => {
     const getStyleForProps =
-      createGetStyleForProps(inputTransform(styleDefinitions))
+      makeGetStyleForProps(inputTransform(styleDefinitions))
 
     const Wrapper = props => {
       const { children, mergeStyle, ...etc } = props
