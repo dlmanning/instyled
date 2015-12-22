@@ -21,9 +21,9 @@ class StyleTable {
       if (bitMap.has(state)) {
         return bitMap.get(state)
       } else {
+        bitMap.set(state, largestBit)
         largestBit <<= 1
 
-        bitMap.set(state, largestBit)
         return largestBit
       }
     }
