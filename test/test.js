@@ -23,32 +23,32 @@ import { renderToStaticMarkup as render } from 'react-dom/server'
 //   }
 // }
 
-// const style = {
-//   $base: { display: 'flex', color: 'black', width: '90%'},
-//   hover: { color: 'orange' },
-//   disabled: { color: 'grey' },
-//   'disabled_active': { color: 'peach'},
-//   'hover_active': { color: 'blue' }
-// }
+const style = {
+  $base: { display: 'flex', color: 'black', width: '90%'},
+  hover: { color: 'orange' },
+  disabled: { color: 'grey' },
+  'disabled_active': { color: 'peach'},
+  'hover_active': { color: 'blue' }
+}
 
 // console.log(hierarchical(style))
 //
-const styleDefinitionFn = d => {
-  d({ display: 'flex', color: 'black' })
-  d(['hover', 'active'], { color: 'blue' }).maybe(['disabled', 'active'])
-  d(['active'], { color: 'red' }).maybe(['disabled'])
-  d(['disabled'], { color: 'grey' })
-}
+// const styleDefinitionFn = d => {
+//   d({ display: 'flex', color: 'black' })
+//   d(['hover', 'active'], { color: 'blue' }).maybe(['disabled', 'active'])
+//   d(['active'], { color: 'red' }).maybe(['disabled'])
+//   d(['disabled'], { color: 'grey' })
+// }
 
-// const Component = instyledWithTransform(flatKeyed)(style, {
-//   component: 'div',
-//   staticProps: { name: 'steve' }
-// })
+const Component = instyledWithTransform(flatKeyed)(style, {
+  component: 'div',
+  staticProps: { name: 'steve' }
+})
 
-const Component = instyled(styleDefinitionFn, { component: 'div'})
+// const Component = instyled(styleDefinitionFn, { component: 'div'})
 
 const output = render(
-  <Component hover disabled mergeStyle={{width: '100%'}}>
+  <Component hover mergeStyle={{width: '100%'}}>
     <h1>Hello World</h1>
   </Component>
 )
