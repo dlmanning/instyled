@@ -10,10 +10,10 @@ export const instyledWithTransform = inputTransform =>
 
     const Wrapper = props => {
       const { children, mergeStyle, ...etc } = props
-      const style = getStyleForProps(etc)
+      let style = getStyleForProps(etc)
 
       if (mergeStyle != null) {
-        Object.assign(style, mergeStyle)
+        style = Object.assign({}, style, mergeStyle)
       }
 
       return React.createElement(
