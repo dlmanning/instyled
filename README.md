@@ -59,7 +59,7 @@ const SomeComponent = instyled({
 
 ### Specify styles with a flat map
 ```javascript
-import { instyledWithTransform, flatKeyed } form 'instyled'
+import { instyledWithTransform, flatKeyed } from 'instyled'
 
 const instyled = instyledWithTransform(flatKeyed)
 
